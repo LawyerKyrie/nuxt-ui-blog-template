@@ -76,6 +76,11 @@ if (post.value.image?.src) {
           :value="post"
         />
 
+        <ClientOnly>
+          <!-- Added 19.11.2025 -->
+          <GithubComments />
+        </ClientOnly>
+
         <USeparator v-if="surround?.length" />
 
         <UContentSurround :surround="surround" />

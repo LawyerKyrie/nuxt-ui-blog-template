@@ -42,6 +42,11 @@ defineOgImageComponent('Saas')
         :value="page"
       />
 
+      <ClientOnly>
+        <!-- Added 19.11.2025 -->
+        <GithubComments />
+      </ClientOnly>
+
       <USeparator v-if="surround?.length" />
 
       <UContentSurround :surround="surround" />

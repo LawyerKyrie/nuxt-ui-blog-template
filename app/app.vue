@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { Analytics } from '@vercel/analytics/nuxt'
+
 const colorMode = useColorMode()
 
 const color = computed(() => colorMode.value === 'dark' ? '#020618' : 'white')
@@ -21,7 +23,8 @@ useSeoMeta({
   titleTemplate: '%s - Nuxt SaaS template',
   ogImage: 'https://ui.nuxt.com/assets/templates/nuxt/saas-light.png',
   twitterImage: 'https://ui.nuxt.com/assets/templates/nuxt/saas-light.png',
-  twitterCard: 'summary_large_image'
+  twitterCard: 'summary_large_image',
+  googleSiteVerification: 'OBR08WFLQQiJUKuLzi19h9dr7I99cVDn5UzDi9mAjwA'
 })
 
 const { data: navigation } = await useAsyncData('navigation', () => queryCollectionNavigation('docs'), {
@@ -55,6 +58,7 @@ provide('navigation', navigation)
 <template>
   <UApp>
     <NuxtLoadingIndicator />
+    <Analytics />
 
     <NuxtLayout>
       <NuxtPage />
