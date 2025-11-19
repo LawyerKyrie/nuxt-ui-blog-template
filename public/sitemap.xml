@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
+<url>
+  <loc>https://nuxt-ui-blog-template.vercel.app/</loc>
+  <lastmod>2025-11-19T00:20:23+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://nuxt-ui-blog-template.vercel.app/docs/getting-started</loc>
+  <lastmod>2025-11-19T00:20:32+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://nuxt-ui-blog-template.vercel.app/pricing</loc>
+  <lastmod>2025-11-19T00:20:26+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://nuxt-ui-blog-template.vercel.app/blog</loc>
+  <lastmod>2025-11-19T00:20:27+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://nuxt-ui-blog-template.vercel.app/changelog</loc>
+  <lastmod>2025-11-19T00:20:27+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://nuxt-ui-blog-template.vercel.app/login</loc>
+  <lastmod>2025-11-19T00:20:27+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://nuxt-ui-blog-template.vercel.app/signup</loc>
+  <lastmod>2025-11-19T00:20:27+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://nuxt-ui-blog-template.vercel.app/docs/getting-started/installation</loc>
+  <lastmod>2025-11-19T00:20:32+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://nuxt-ui-blog-template.vercel.app/docs/getting-started/usage</loc>
+  <lastmod>2025-11-19T00:20:32+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://nuxt-ui-blog-template.vercel.app/docs/essentials/markdown-syntax</loc>
+  <lastmod>2025-11-19T00:20:32+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://nuxt-ui-blog-template.vercel.app/docs/essentials/code-blocks</loc>
+  <lastmod>2025-11-19T00:20:32+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://nuxt-ui-blog-template.vercel.app/docs/essentials/prose-components</loc>
+  <lastmod>2025-11-19T00:20:32+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://nuxt-ui-blog-template.vercel.app/docs/essentials/images-embeds</loc>
+  <lastmod>2025-11-19T00:20:32+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://nuxt-ui-blog-template.vercel.app/blog/asian-cuisine</loc>
+  <lastmod>2025-11-19T00:20:31+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://nuxt-ui-blog-template.vercel.app/blog/pyrenees</loc>
+  <lastmod>2025-11-19T00:20:31+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://nuxt-ui-blog-template.vercel.app/blog/james-webb</loc>
+  <lastmod>2025-11-19T00:20:31+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://nuxt-ui-blog-template.vercel.app/blog/meditation</loc>
+  <lastmod>2025-11-19T00:20:31+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://nuxt-ui-blog-template.vercel.app/blog/animals</loc>
+  <lastmod>2025-11-19T00:20:32+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://nuxt-ui-blog-template.vercel.app/blog/cryptocurrencies</loc>
+  <lastmod>2025-11-19T00:20:32+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+
+
+</urlset>
