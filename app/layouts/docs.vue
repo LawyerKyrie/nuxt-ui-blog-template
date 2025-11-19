@@ -18,8 +18,10 @@ const navigation = inject<Ref<ContentNavigationItem[]>>('navigation')
               </template>
 
               <UContentNavigation
-                :navigation="navigation"
                 highlight
+                type="single"
+                :navigation="navigation"
+                :default-open="false"
               />
             </UPageAside>
           </template>
@@ -28,6 +30,9 @@ const navigation = inject<Ref<ContentNavigationItem[]>>('navigation')
         </UPage>
       </UContainer>
     </UMain>
+
+    <!-- Added 19.11.2025 -->
+    <BackToTop />
 
     <AppFooter />
   </div>

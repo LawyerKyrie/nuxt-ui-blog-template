@@ -3,39 +3,46 @@
     v-slot="{ open }"
     :modal="false"
     :items="[{
-      label: 'Starter',
-      to: 'https://starter-template.nuxt.dev/'
+      label: 'Books',
+      to: 'https://luther-books.vercel.app/',
+      target: '_blank'
     }, {
-      label: 'Landing',
-      to: 'https://landing-template.nuxt.dev/'
+      label: 'Works',
+      to: 'https://Luthers-works-v1.vercel.app/',
+      target: '_blank'
     }, {
-      label: 'Docs',
-      to: 'https://docs-template.nuxt.dev/'
+      label: 'Dogma',
+      to: 'https://christian-dogmatics.vercel.app/',
+      target: '_blank'
     }, {
-      label: 'SaaS',
-      to: 'https://saas-template.nuxt.dev/',
+      label: 'Catechism',
+      to: 'https://Luthers-catechism.vercel.app/',
+      target: '_blank'
+    }, {
+      label: 'Blog Template',
+      to: 'https://nuxt-ui-blog-template.nuxt.dev/',
       color: 'primary',
       checked: true,
       type: 'checkbox'
     }, {
-      label: 'Dashboard',
-      to: 'https://dashboard-template.nuxt.dev/'
-    }, {
       label: 'Chat',
-      to: 'https://chat-template.nuxt.dev/'
+      to: 'https://chat-template.nuxt.dev/',
+      target: '_blank'
     }, {
       label: 'Portfolio',
-      to: 'https://portfolio-template.nuxt.dev/'
+      to: 'https://portfolio-template.nuxt.dev/',
+      target: '_blank'
     }, {
       label: 'Changelog',
-      to: 'https://changelog-template.nuxt.dev/'
+      to: 'https://changelog-template.nuxt.dev/',
+      target: '_blank'
     }]"
     :content="{ align: 'start' }"
     :ui="{ content: 'min-w-fit' }"
     size="xs"
   >
     <UButton
-      label="SaaS"
+      label="More"
       variant="subtle"
       trailing-icon="i-lucide-chevron-down"
       size="xs"
