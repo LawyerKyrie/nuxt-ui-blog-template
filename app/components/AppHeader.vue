@@ -9,6 +9,9 @@ const items = computed(() => [{
   label: 'Pricing',
   to: '/pricing'
 }, {
+  label: 'Search',
+  to: '/search'
+}, {
   label: 'Blog',
   to: '/blog'
 }, {

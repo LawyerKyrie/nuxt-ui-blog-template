@@ -108,6 +108,12 @@ export const collections = {
       })
     })
   }),
+  searching: defineCollection({
+    source: '5.searching.yml',
+    type: 'page',
+    schema: z.object({
+    })
+  }),
   blog: defineCollection({
     source: '3.blog.yml',
     type: 'page'
