@@ -1,3 +1,4 @@
+// useFetch data with table rows content - see search.vue line 35
 const rows = [
   {
     id: '100',

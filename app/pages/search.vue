@@ -2,7 +2,7 @@
 import { h, resolveComponent } from 'vue'
 import { upperFirst } from 'scule' /* Visibility */
 import type { ContextMenuItem, TableColumn, TableRow } from '@nuxt/ui'
-import type { Column } from '@tanstack/vue-table'
+import type { Column, Row } from '@tanstack/vue-table'
 import { useClipboard /* useInfiniteScroll */ } from '@vueuse/core'
 
 const toast = useToast()
@@ -24,7 +24,7 @@ useSeoMeta({
   ogDescription: description
 })
 
-type Row = {
+type RowCells = {
   id: string
   date: string
   status: 'paid' | 'failed' | 'refunded'
@@ -32,17 +32,17 @@ type Row = {
   pages: number
 }
 
-const { data: rows, pending } = await useFetch<Row[]>(
+const { data: rows, pending } = await useFetch<RowCells[]>(
   '/api/table-rows',
-  { // the following line isn't in use, and can be deleted
+  { /* the following line isn't in use, and can be deleted
     key: 'table-rows',
     transform: (data) => {
       return (data?.map(row => ({ ...row })) || [])
-    } // server: false, lazy: true, immediate: false
+    } // server: false, lazy: true, immediate: false */
   }
 )
 
-const columns: TableColumn<Row>[] = [
+const columns: TableColumn<RowCells>[] = [
   {
     accessorKey: 'id',
     header: ({ column }) => getHeader(column, '#'),
@@ -86,7 +86,7 @@ const columns: TableColumn<Row>[] = [
   },
   {
     accessorKey: 'pages',
-    header: ({ column }) => h('div', { class: 'text-right' }, getHeader(column, 'Pages')), // header: () => h('div', { class: 'text-right' }, 'Amount'),
+    header: ({ column }) => h('div', { class: 'text-right' }, getHeader(column, 'Pages')),
     cell: ({ row }) => {
       const pages = Number.parseFloat(row.getValue('pages'))
 
@@ -106,7 +106,7 @@ const columns: TableColumn<Row>[] = [
 const globalFilter = ref('') // Start with this filter
 
 /* Sorting */
-function getHeader(column: Column<Row>, label: string) {
+function getHeader(column: Column<RowCells>, label: string) {
   const isSorted = column.getIsSorted()
 
   return h(
@@ -176,45 +176,61 @@ const columnVisibility = ref({
   action: false
 })
 
-/* Start Action (Slots) and ContextMenuItem */
-function getDropdownActions(user: User): DropdownMenuItem[][] {
+/* Start Action (Slots) */
+function getDropdownActions(row: Row<RowCells>) {
+  // Using this function instead of getRowCellsItems(row) {}
   return [
     [
       {
-        label: 'Copy Id',
-        icon: 'i-lucide-copy',
-        onSelect: () => {
-          copy(user.id.toString())
-
-          toast.add({
-            title: 'ID copied to clipboard!',
-            color: 'success',
-            icon: 'i-lucide-circle-check'
-          })
+        type: 'label' as const,
+        label: 'Actions'
+      }
+    ],
+    [
+      {
+        label: row.getIsExpanded() ? 'Collapse' : 'Expand',
+        title: JSON.stringify(row.original),
+        icon: 'i-lucide-expand',
+        onSelect() {
+          row.toggleExpanded()
         }
       }
     ],
     [
       {
-        label: 'Copy link',
+        label: 'Copy ID',
+        title: row.original.id,
         icon: 'i-lucide-copy',
         onSelect: () => {
-          copy(user.links.toString())
+          copy(row.original.id.toString())
 
           toast.add({
-            title: 'Link copied to clipboard!',
+            title: 'ID (original) copied to clipboard!',
             color: 'success',
             icon: 'i-lucide-circle-check'
           })
         }
-      }
-    ],
-    [
+      },
+      {
+        label: 'Copy Link(s)',
+        title: row.original.links,
+        icon: 'i-lucide-copy',
+        onSelect: () => {
+          copy(row.original.links)
+
+          toast.add({
+            title: 'Link(s) copied to clipboard!',
+            color: 'success',
+            icon: 'i-lucide-circle-check'
+          })
+        }
+      },
       {
         label: 'Copy Status',
+        title: row.original.status,
         icon: 'i-lucide-copy',
         onSelect: () => {
-          copy(user.status.toString())
+          copy(row.original.status.toString())
 
           toast.add({
             title: 'Status copied to clipboard!',
@@ -223,17 +239,29 @@ function getDropdownActions(user: User): DropdownMenuItem[][] {
           })
         }
       }
+    ],
+    [
+      // { type: 'separator' as const },
+      {
+        label: 'View row object',
+        title: JSON.stringify(row.original)
+      }
     ]
   ]
 }
-/* End with action (slots) */
+/* End of action (slots) */
 
-/* Start Row context menu event */
+/* Start RowCells context menu event */
 const items = ref<ContextMenuItem[]>([])
-function onContextmenu(_e: Event, row: TableRow<Payment>) {
-  items.value = getDropdownActions(row)
+/* function getRowCellsItems(row: TableRow<RowCells>) {
+  return [
+    // All the Objects in getDropdownActions - without arrays
+  ]
+} */
+function onContextmenu(_e: Event, row: TableRow<RowCells>) {
+  items.value = getDropdownActions(row) // getRowCellsItems(row)
 }
-/* End Row context menu event */
+/* End RowCells context menu event */
 
 /* Start Hover */
 const anchor = ref({ x: 0, y: 0 })
@@ -253,10 +281,10 @@ const reference = computed(() => ({
 
 const open = ref(false)
 const openDebounced = refDebounced(open, 10)
-const selectedRow = ref<TableRow<Row> | null>(null)
+const selectedRowCells = ref<TableRow<RowCells> | null>(null)
 
-function onHover(_e: Event, row: TableRow<Row> | null) {
-  selectedRow.value = row
+function onHover(_e: Event, row: TableRow<RowCells> | null) {
+  selectedRowCells.value = row
   open.value = !!row
 }
 /* End Hover */
@@ -310,11 +338,13 @@ function onHover(_e: Event, row: TableRow<Row> | null) {
     </div>
     <div class="flex flex-col flex-1 w-full">
       <UContextMenu :items="items">
+        <!-- Activate sticky header with className: max-h-[312px] -->
         <UTable
           ref="table"
           v-model:global-filter="globalFilter"
           v-model:sorting="sorting"
           v-model:column-visibility="columnVisibility"
+          sticky
           :data="rows || []"
           :columns="columns"
           :loading="pending === true"
@@ -329,7 +359,7 @@ function onHover(_e: Event, row: TableRow<Row> | null) {
           @contextmenu="onContextmenu"
         >
           <template #action-cell="{ row }">
-            <UDropdownMenu :items="getDropdownActions(row.original)">
+            <UDropdownMenu :items="getDropdownActions(row)">
               <UButton
                 icon="i-lucide-ellipsis-vertical"
                 color="neutral"
@@ -350,7 +380,7 @@ function onHover(_e: Event, row: TableRow<Row> | null) {
       >
         <template #content>
           <div class="p-4">
-            {{ selectedRow?.original?.id }}
+            {{ selectedRowCells?.original?.id }}
           </div>
         </template>
       </UPopover>
